@@ -34,10 +34,12 @@ let pokemonList = [
 
 //List of pokemon names and their height displayed on document
 for (let i=0; i < pokemonList.length; i++){
-  if (pokemonList[i].height > 1){
-    document.write("The Number "+(i+1)+" pokemon's name is: "+pokemonList[i].name+", Height("+pokemonList[i].height+") - WOW! That's BIG<br>");
+  let currPok = pokemonList[i];                           //assigned currnetly indexed pokemnon to currPok
+
+  if (currPok.height > 1){
+    document.write("The Number "+(i+1)+" pokemon's name is: "+currPok.name+", Height("+currPok.height+") - WOW! That's BIG<br>");
   }
   else{
-    document.write("The Number "+(i+1)+" pokemon's name is: "+pokemonList[i].name+", Height("+pokemonList[i].height+")<br>");
+    document.write("The Number "+(i+1)+" pokemon's name is: "+currPok.name+", Height("+currPok.height+")<br>");
   }
 }
