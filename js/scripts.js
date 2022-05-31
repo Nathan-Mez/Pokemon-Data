@@ -33,13 +33,11 @@ let pokemonList = [
 ];
 
 //List of pokemon names and their height displayed on document
-for (let i=0; i < pokemonList.length; i++){
-  let currPok = pokemonList[i];                           //assigned currnetly indexed pokemnon to currPok
-
-  if (currPok.height > 1){
-    document.write("The Number "+(i+1)+" pokemon's name is: "+currPok.name+", Height("+currPok.height+") - WOW! That's BIG<br>");
-  }
+pokemonList.forEach(function(pokn){
+  if (pokn.height > 1){
+    document.write("Pokemon's name: "+pokn.name+", Height("+pokn.height+") - WOW! That's BIG<br>");
+   }
   else{
-    document.write("The Number "+(i+1)+" pokemon's name is: "+currPok.name+", Height("+currPok.height+")<br>");
-  }
-}
+    document.write("Pokemon's name: "+pokn.name+", Height("+pokn.height+")<br>");
+   }
+});
