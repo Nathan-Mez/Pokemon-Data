@@ -34,10 +34,22 @@ let pokemonRepository = (function (){
     }
   ];
 
+  //Adds item object to pokemonList array
   function add(item){
-    pokemonList.push(item);           //Adds item object to pokemonList array
+    if (typeof(item)=='object'){               //Check if item to be added is object, if not alert
+      if (item.name && item.height){           //Check if item has both name and height keys
+        pokemonList.push(item);
+      }
+      else{
+        return alert('You have to include name and height in your object');
+      }
+    }
+    else{
+      return alert('You can only Add object to pokemonList!')
+    }
   }
-  function getAll(){                 //returns pokemonList array
+
+  function getAll(){                   //returns pokemonList array
     return pokemonList;
   }
 
@@ -47,8 +59,15 @@ let pokemonRepository = (function (){
   };
 
 })();
-//===================End of pokemonRepository============================================================
+//_______________________End of pokemonRepository_____________________________________
 
+/*
+================Test pokemonRepository.add(item) function ============
+*/
+//pokemonRepository.add('string');
+//pokemonRepository.add({name: 'pokemon_name'});
+//pokemonRepository.add({name: 'pokemon_name', height: 1.254});
+//====================================================================
 
 
 //List of pokemon names and their height displayed on document
