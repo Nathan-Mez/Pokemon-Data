@@ -48,34 +48,40 @@ let pokemonRepository = (function (){
       return alert('You can only Add object to pokemonList!')
     }
   }
-
   function getAll(){                   //returns pokemonList array
     return pokemonList;
+  }
+  function addListItem(pokemon){
+    let pokemonList = document.querySelector('ul');
+
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');      //create a new 'li' & 'button' for the current Pokemon
+
+    button.innerText = pokemon.name;
+    button.classList.add('pokeButton');                //add class and innter text for the button of the current pokemon
+
+    button.addEventListener('click', function(pokemon){
+      showDetails(pokemon);
+    });
+
+    listItem.appendChild(button);
+    pokemonList.appendChild(listItem);                //add the list (of button) to the parent 'ul' element
+  }
+  function showDetails(pokemon){
+    console.log(pokemon);
   }
 
   return{
     add : add,
-    getAll : getAll
+    getAll : getAll,
+    addListItem : addListItem
   };
 
 })();
 //_______________________End of pokemonRepository_____________________________________
 
-/*
-================Test pokemonRepository.add(item) function ============
-*/
-//pokemonRepository.add('string');
-//pokemonRepository.add({name: 'pokemon_name'});
-//pokemonRepository.add({name: 'pokemon_name', height: 1.254});
-//====================================================================
-
 
 //List of pokemon names and their height displayed on document
 pokemonRepository.getAll().forEach(function(pokn){
-  if (pokn.height > 1){
-    document.write("Pokemon's name: "+pokn.name+", Height("+pokn.height+") - WOW! That's BIG<br>");
-   }
-  else{
-    document.write("Pokemon's name: "+pokn.name+", Height("+pokn.height+")<br>");
-   }
+  pokemonRepository.addListItem(pokn);
 });
