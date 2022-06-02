@@ -52,7 +52,7 @@ let pokemonRepository = (function (){
     return pokemonList;
   }
   function addListItem(pokemon){
-    let pokemonList = document.querySelector('ul');
+    let pokemonList = document.querySelector('.pokemon-list');
 
     let listItem = document.createElement('li');
     let button = document.createElement('button');      //create a new 'li' & 'button' for the current Pokemon
