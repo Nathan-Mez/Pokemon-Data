@@ -48,9 +48,15 @@ let pokemonRepository = (function (){
       return alert('You can only Add object to pokemonList!')
     }
   }
+
   function getAll(){                   //returns pokemonList array
     return pokemonList;
   }
+
+  function showDetails(pokemon){
+    console.log(pokemon);
+  }
+
   function addListItem(pokemon){
     let pokemonList = document.querySelector('.pokemon-list');
 
@@ -60,18 +66,15 @@ let pokemonRepository = (function (){
     button.innerText = pokemon.name;
     button.classList.add('pokeButton');                //add class and innter text for the button of the current pokemon
 
-    button.addEventListener('click', function(pokemon){
+    button.addEventListener('click', function(event){ //or ", function()" because I'm not using the event object
       showDetails(pokemon);
     });
 
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);                //add the list (of button) to the parent 'ul' element
   }
-  function showDetails(pokemon){
-    console.log(pokemon);
-  }
 
-  return{
+    return{
     add : add,
     getAll : getAll,
     addListItem : addListItem
