@@ -3,58 +3,22 @@
 /*Array of Pokemnon data to display, assigned to pokemonList
 wrapped in pokemonRepository to avoid accidentally accessing */
 let pokemonRepository = (function (){
-  let pokemonList = [
-    {
-      name : 'Charmander',                            //Data on pokemon-1, Charmander
-      height : 0.610,
-      category : 'Lizard',
-      type : ['Fire'],
-      weaknesses : ['Water', 'Ground', 'Rock']
-    },
-    {
-      name : 'Charmeleon',                            //Data on pokemon-2, Charmeloen
-      height : 1.090,
-      category : 'Flame',
-      type : ['Fire'],
-      weaknesses : ['Ground', 'Rock', 'Water']
-    },
-   {
-      name : 'Wartortle',                            //Data on pokemon-3, Wartortle
-      height : 0.991,
-      category : 'Turtle',
-      type : ['Water'],
-      weaknesses : ['Grass','Electric']
-    },
-    {
-      name : 'Pikachu',                             //Data on pokemon-4, Picachu
-      height : 0.406,
-      category: 'Mouse',
-      type : ['Electric'],
-      weaknesses : ['Ground']
-    }
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=50';
 
   //Adds item object to pokemonList array
   function add(item){
-    if (typeof(item)=='object'){               //Check if item to be added is object, if not alert
-      if (item.name && item.height){           //Check if item has both name and height keys
-        pokemonList.push(item);
-      }
-      else{
-        return alert('You have to include name and height in your object');
-      }
-    }
-    else{
-      return alert('You can only Add object to pokemonList!')
-    }
+    pokemonList.push(item);
   }
 
   function getAll(){                   //returns pokemonList array
     return pokemonList;
   }
 
-  function showDetails(pokemon){
-    console.log(pokemon);
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function () {
+      console.log(pokemon);
+    });
   }
 
   function addListItem(pokemon){
@@ -66,25 +30,58 @@ let pokemonRepository = (function (){
     button.innerText = pokemon.name;
     button.classList.add('pokeButton');                //add class and innter text for the button of the current pokemon
 
-    button.addEventListener('click', function(event){ //or ", function()" because I'm not using the event object
-      showDetails(pokemon);
-    });
-
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);                //add the list (of button) to the parent 'ul' element
+
+    button.addEventListener('click', function(event){
+      showDetails(pokemon);
+    });
   }
 
-    return{
-    add : add,
-    getAll : getAll,
-    addListItem : addListItem
-  };
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+       return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
 
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imgUrl = details.sprites.front_default;
+      item.height = details.height;
+      //item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
+  return {
+    add: add,
+    getAll: getAll,
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails
+  };
 })();
 //_______________________End of pokemonRepository_____________________________________
 
 
-//List of pokemon names and their height displayed on document
-pokemonRepository.getAll().forEach(function(pokn){
-  pokemonRepository.addListItem(pokn);
+//List of pokemon button
+pokemonRepository.loadList().then(function() {
+  pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+  });
 });
