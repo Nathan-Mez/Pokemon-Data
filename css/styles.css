@@ -9,6 +9,9 @@ body{
   line-height: 23px;
   background-color: #D0D8DD;
 }
+* {
+  box-sizing: border-box;
+}
 
 h1{
   font-family: "Poppins", sans-serif;
@@ -65,4 +68,19 @@ h1{
 /*-------------Remove shot points from the list-------------*/
 li{
     list-style-type: none;
+}
+
+
+.loading_message{
+  position: fixed;
+  top: 25%;
+  left: 20%;
+  width: 300px;
+  height: 80px;
+  text-align: center;
+  padding: 22px;
+  background-color: #C8DBE4;
+  box-shadow: 4px 6px 6px #888;
+  border: 3px solid #326273;
+  border-radius: 3px;
 }
