@@ -71,7 +71,7 @@ li{
 }
 
 
-.loading_message{
+.loading_message, .pokemon_img{
   position: fixed;
   top: 25%;
   left: 20%;
@@ -83,4 +83,14 @@ li{
   box-shadow: 4px 6px 6px #888;
   border: 3px solid #326273;
   border-radius: 3px;
+}
+
+.pokemon_img{
+  width: 400px;
+  height: 400px;
+  padding: 5px;
+}
+
+.hidden{
+  display: none;
 }

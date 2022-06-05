@@ -4,7 +4,7 @@
 wrapped in pokemonRepository to avoid accidentally accessing */
 let pokemonRepository = (function (){
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=50';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=54';
 
   //Adds item object to pokemonList array
   function add(item){
@@ -17,6 +17,7 @@ let pokemonRepository = (function (){
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
+      addPokemonImage(pokemon);
       console.log(pokemon);
     });
   }
@@ -39,9 +40,9 @@ let pokemonRepository = (function (){
   }
 
   function loadList() {
-    showLoadingMessage();
+    showLoadingMessage();                    //show loading message until buttons appear
     return fetch(apiUrl).then(function (response) {
-       hideLoadingMessage();
+       hideLoadingMessage();                 //hide the loading message after buttons appear
        return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
@@ -52,16 +53,16 @@ let pokemonRepository = (function (){
         add(pokemon);
       });
     }).catch(function (e) {
-      hideLoadingMessage();
+      hideLoadingMessage();                  //hide loading message if there's error fetching
       console.error(e);
     })
   }
 
   function loadDetails(item) {
-    showLoadingMessage();
+    showLoadingMessage();                   //show loading message until details are displayed
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
-      hideLoadingMessage();
+      hideLoadingMessage();                 //hide loading message after details are displayed on console
       return response.json();
     }).then(function (details) {
 
@@ -69,7 +70,7 @@ let pokemonRepository = (function (){
       item.height = details.height;
       //item.types = details.types;
     }).catch(function (e) {
-      hideLoadingMessage();
+      hideLoadingMessage();                  //hide loading if there's error fetching url
       console.error(e);
     });
   }
@@ -93,14 +94,24 @@ pokemonRepository.loadList().then(function() {
   });
 });
 
+//_____________Loading Message_______________________________
+
 function showLoadingMessage(){
-  let body = document.querySelector('body');
-  let loadingMessage = document.createElement('p');
-  loadingMessage.classList.add('loading_message');
-  loadingMessage.innerText = 'Loading Details';
-  body.appendChild(loadingMessage);
+  let message = document.querySelector('.loading_message');
+  message.classList.remove('hidden');
 }
 function hideLoadingMessage(){
   let message = document.querySelector('.loading_message');
-  message.classList.remove('loading_message');
+  message.classList.add('hidden');
+}
+
+//_______________Pokemon Image____________________________
+
+function addPokemonImage(pokemon_obj){
+  let image_box = document.querySelector('.pokemon_img');
+  image_box.classList.remove('hidden');
+  image_box.src = pokemon_obj.imgUrl;
+  setTimeout(function(){
+    image_box.classList.add('hidden');
+  }, 4500);
 }
