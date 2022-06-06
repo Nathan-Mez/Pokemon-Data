@@ -1,4 +1,6 @@
-
+/*======================================================
+               General Styling
+=======================================================*/
 html{
   height: 100%;
 }
@@ -18,6 +20,9 @@ h1{
   font-weight: 400;
 }
 
+/*======================================================
+          Pokemon List buttons
+=======================================================*/
 .pokemon-list{
   display: grid;
   grid-template-columns: 230px 230px 230px ;
@@ -70,8 +75,10 @@ li{
     list-style-type: none;
 }
 
-
-.loading_message, .pokemon_img{
+/*======================================================
+               Loading Message
+=======================================================*/
+.loading_message,{
   position: fixed;
   top: 25%;
   left: 20%;
@@ -85,12 +92,69 @@ li{
   border-radius: 3px;
 }
 
-.pokemon_img{
-  width: 400px;
-  height: 400px;
-  padding: 5px;
-}
-
 .hidden{
   display: none;
+}
+
+/*======================================================
+               Modals
+=======================================================*/
+#modal-container{
+   display: none;
+}
+#modal-container.is-visible {
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  /* to show it above other content */
+  z-index: 999;
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto;
+  /* this is used to center the modal */
+  display: grid;
+  text-align: center;
+}
+
+.modal {
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 15px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+  box-shadow: 6px 9px 9px #444;
+}
+
+.modal-close {
+  float: right;
+  -webkit-appearance: none;
+  padding: 3px 10px;
+  border: 0px solid;
+  background-color: #637D92;
+  color: #FFF;
+  transition: 0.3s background-color;
+}
+.modal-close:hover{
+  background-color: #D42D21;
+}
+.modal-close:active{
+  opacity: 0.8;
+}
+
+.modal h1 {
+  margin-top: 0;
+}
+.modal img{
+  width: 30%;
+  min-width: 100px;
+}
+.modal p {
+  margin-bottom: 0;
 }
