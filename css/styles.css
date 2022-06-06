@@ -154,6 +154,7 @@ li{
 .modal img{
   width: 30%;
   min-width: 100px;
+  background-color: #ECE2D5;
 }
 .modal p {
   margin-bottom: 0;
