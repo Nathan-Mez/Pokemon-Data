@@ -11,7 +11,7 @@ let pokemonRepository = (function (){
     pokemonList.push(item);
   }
 
-  function getAll(){                   //returns pokemonList array
+  function getAll(){
     return pokemonList;
   }
 
@@ -26,23 +26,22 @@ let pokemonRepository = (function (){
     let pokemonList = document.querySelector('.pokemon-list');
 
     let listItem = document.createElement('li');
-    let button = document.createElement('button');      //create a new 'li' & 'button' for the current Pokemon
+    let button = document.createElement('button');
 
     button.innerText = pokemon.name;
-    button.classList.add('pokeButton');                //add class and innter text for the button of the current pokemon
+    button.classList.add('pokeButton');
 
     listItem.appendChild(button);
-    pokemonList.appendChild(listItem);                //add the list (of button) to the parent 'ul' element
-
+    pokemonList.appendChild(listItem);
     button.addEventListener('click', function(event){
       showDetails(pokemon);
     });
   }
 
   function loadList() {
-    showLoadingMessage();                    //show loading message until buttons appear
+    showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
-       hideLoadingMessage();                 //hide the loading message after buttons appear
+       hideLoadingMessage();
        return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
@@ -53,16 +52,16 @@ let pokemonRepository = (function (){
         add(pokemon);
       });
     }).catch(function (e) {
-      hideLoadingMessage();                  //hide loading message if there's error fetching
+      hideLoadingMessage();
       console.error(e);
     })
   }
 
   function loadDetails(item) {
-    showLoadingMessage();                   //show loading message until details are displayed
+    showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
-      hideLoadingMessage();                 //hide loading message after details are displayed on console
+      hideLoadingMessage();
       return response.json();
     }).then(function (details) {
 
@@ -70,7 +69,7 @@ let pokemonRepository = (function (){
       item.height = details.height;
       //item.types = details.types;
     }).catch(function (e) {
-      hideLoadingMessage();                  //hide loading if there's error fetching url
+      hideLoadingMessage();
       console.error(e);
     });
   }
