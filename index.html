@@ -18,11 +18,17 @@
 
   <body>
     <div>
-      <h1>Pokemon</h1>
-      <ul class='list-group'></ul>
-      <p class='loading_message hidden'>Loading Details</p>
+      <nav class="navbar">
+         <a class="navbar-brand"><h1>Pokemon</h1></a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary btn-sm" type="submit">Search</button>
+        </form>
+      </nav>
 
-      <!-- Modal -->
+      <ul class='list-group'></ul>
+
+      <!-- Modal container-->
       <div class="container">
 
           <!-- Modal -->
