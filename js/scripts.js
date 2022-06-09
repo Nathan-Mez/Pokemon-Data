@@ -1,5 +1,3 @@
-
-
 /*Array of Pokemnon data to display, assigned to pokemonList
 wrapped in pokemonRepository to avoid accidentally accessing */
 let pokemonRepository = (function (){
