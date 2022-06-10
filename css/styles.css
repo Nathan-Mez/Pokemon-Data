@@ -11,32 +11,94 @@ body{
   line-height: 23px;
   background-color: #D0D8DD;
 }
+.pageContainer{
+  margin-top: 150px;
+}
 * {
   box-sizing: border-box;
 }
+
 /*======================================================
                Navbar
 =======================================================*/
 .navbar{
-  background-color: #EAEFE6;
+  background-color: #073B4C;
 }
 h1{
   font-family: "Poppins", sans-serif;
   font-weight: 400;
 }
 
+#pokemon-logo{
+  width: 220px;
+}
+
+@media all and (min-width: 870px){
+  form{
+    position: fixed;
+    right: 20px;
+  }
+}
+
+/*======================================================
+               Buttons
+=======================================================*/
+.list-group{
+  display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: auto;
+  margin: 2% 10%;
+}
+
+.btn-pokemon{
+  margin: 5px;
+  background-color: #4F697D;
+  color: white;
+
+}
+
+@media all and (min-width: 550px) and (max-width: 850px){
+  .list-group{
+  	display: grid;
+	  grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media all and (max-width: 550px){
+  .list-group{
+  	display: grid;
+   	grid-template-columns: repeat(2,1fr);
+  }
+}
+
 /*======================================================
                Modals
 =======================================================*/
+.modal-content{
+  width: 350px;
+  self-align: center;
+}
+
 .modal-header{
-  background-color: #E7D7B1;
+  background-color: #AAB690;
+  color: #444;
+}
+
+.modal-image-front, .modal-image-back{
+  width: 152px;
+  background-color: #56666B;
 }
 
 .dismiss{
-  float: right;
-  width: 40px;
+  font-size: 25px;
+  color: #777;
 }
 
-.modal-body p{
+.pokemon-details{
+  margin-top: 20px;
+}
+
+.pokemon-details p{
   margin: 0px;
+  text-align: center;
 }
