@@ -2,7 +2,7 @@
 wrapped in pokemonRepository to avoid accidentally accessing */
 let pokemonRepository = (function (){
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=54';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=60';
 
   //Adds item object to pokemonList array
   function add(item){
@@ -16,16 +16,12 @@ let pokemonRepository = (function (){
   function addListItem(pokemon){
     let pokemonList = document.querySelector('.list-group');
 
-    let listItem = document.createElement('li');
-    listItem.classList.add('list-group-item');
-
     let button = document.createElement('button');
     button.innerText = pokemon.name;
-    button.classList.add('btn', 'btn-info');
+    button.classList.add('btn', 'btn-pokemon');
 
-    listItem.appendChild(button);
-    pokemonList.appendChild(listItem);
-    button.addEventListener('click', function(event){
+    pokemonList.appendChild(button);
+    button.addEventListener('click', function(){
       showDetails(pokemon);
       button.setAttribute('data-toggle', 'modal');
       button.setAttribute('data-target', '#myModal');
