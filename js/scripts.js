@@ -4,6 +4,7 @@ let pokemonRepository = (function (){
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=60';
 
+
   //Adds item object to pokemonList array
   function add(item){
     pokemonList.push(item);
@@ -90,3 +91,22 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+//_____________________Text Filter for search bar____________________
+
+let input = $("input");
+input.on("input", filterList);
+
+function filterList() {
+let inputValue = $("input").val();
+let list = $("button");
+list.each(function() {
+  let item = $(this);
+  let name = item.text();
+  if (name.startsWith(inputValue)) {
+    item.show();
+  } else {
+    item.hide();
+  }
+});
+}
